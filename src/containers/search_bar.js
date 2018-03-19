@@ -12,7 +12,7 @@ class SearchBar extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            value: ''
+            term: ''
         }
         this.onInputChange = this.onInputChange.bind(this);
         this.onFormSubmit = this.onFormSubmit.bind(this);
@@ -64,8 +64,9 @@ class SearchBar extends Component {
     }
 }
 
+//getting access to the function fetching weather inside of this component
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({fetchWeather}, dispatch)
 }
 
-export default connect(mapDispatchToProps)(SearchBar);
+export default connect(null, mapDispatchToProps)(SearchBar);

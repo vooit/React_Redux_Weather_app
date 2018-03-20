@@ -19,23 +19,19 @@ class SearchBar extends Component {
 
     }
 
-
-
     onInputChange(e) {
         let newValue = e.currentTarget.value;
         this.setState({
             term: newValue
         })
-
     }
 
     onFormSubmit(event) {
         event.preventDefault();
-
         // We need to go and fetch weather data
+        //thenks to bindActionCreators and dispatch we have acces to props in fetchWeather
+        //call action creator
         this.props.fetchWeather(this.state.term);
-
-        //api.openweathermap.org/data/2.5/forecast?q={city name},{country code}
 
         this.setState({ term: "" });
     }
@@ -47,26 +43,22 @@ class SearchBar extends Component {
                         value={this.state.term}
                         onChange={this.onInputChange}
                         className="form-control"
-                        placeholder="get forecast for desired city"
-                    />
+                        placeholder="get forecast for desired city"/>
                     <span className="input-group-btn">
                           <button type="submit"
                                   className="btn btn-primary"
                           >Search
                     </button>
                     </span>
-
-
                 </form>
                 <p>{this.state.term}</p>
             </div>
         )
     }
 }
-
 //getting access to the function fetching weather inside of this component
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({fetchWeather}, dispatch)
 }
-
+//null for
 export default connect(null, mapDispatchToProps)(SearchBar);
